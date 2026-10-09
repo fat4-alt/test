@@ -19,7 +19,7 @@ on:
 # 2. 全局环境变量 (Environment Variables)
 # ============================================================
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/fat4-alt/lede
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
@@ -90,6 +90,7 @@ jobs:
         chmod +x ./diy.sh
         ./diy.sh
         echo 'src-git qmodem https://github.com/FUjr/QModem.git;stable' >> feeds.conf.default
+        echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds update qmodem
