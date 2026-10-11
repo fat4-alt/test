@@ -82,15 +82,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     # --------------------------------------------------------
-    # 步骤 5：加载自定义脚本 (DIY) 和更新 Feeds 
-    # echo 'src-git qmodem https://github.com/FUjr/QModem.git;stable' >> feeds.conf.default
-    # echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
-    # ./scripts/feeds update qmodem
-    # ./scripts/feeds install -a -p qmodem
-    # ./scripts/feeds install -a -f -p qmodem
-    # rm -rf ./package/feeds/helloworld/luci-app-ssr-plus
-    # rm -rf ./package/feeds/luci/luci-app-filetransfer
-    # rm -rf ./package/feeds/luci/luci-app-filebrowser
+    # 步骤 5：加载自定义脚本 (DIY) 和更新 Feeds
     # --------------------------------------------------------
     - name: Load custom feeds & Update feeds
       run: |
@@ -98,10 +90,10 @@ jobs:
         [ -e $GITHUB_WORKSPACE/$DIY_SH ] && mv $GITHUB_WORKSPACE/$DIY_SH ./diy.sh
         chmod +x ./diy.sh
         ./diy.sh
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
         echo 'src-git qmodem https://github.com/FUjr/QModem.git;stable' >> feeds.conf.default
         echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
         ./scripts/feeds update qmodem
         ./scripts/feeds install -a -p qmodem
         ./scripts/feeds install -a -f -p qmodem
