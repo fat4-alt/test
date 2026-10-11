@@ -20,8 +20,8 @@ on:
 # https://github.com/coolsnowwolf/lede
 # ============================================================
 env:
-  REPO_URL: https://github.com/fat4-alt/openwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_URL: https://github.com/fat4-alt/lede
+  REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   FREE_SPACE: true
@@ -100,6 +100,14 @@ jobs:
         ./diy.sh
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        echo 'src-git qmodem https://github.com/FUjr/QModem.git;stable' >> feeds.conf.default
+        echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
+        ./scripts/feeds update qmodem
+        ./scripts/feeds install -a -p qmodem
+        ./scripts/feeds install -a -f -p qmodem
+        rm -rf ./package/feeds/helloworld/luci-app-ssr-plus
+        rm -rf ./package/feeds/luci/luci-app-filetransfer
+        rm -rf ./package/feeds/luci/luci-app-filebrowser
         
 
     # --------------------------------------------------------
