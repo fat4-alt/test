@@ -15,8 +15,8 @@ on:
 # 2. 全局环境变量 (Environment Variables) 
 # ============================================================
 env:
-  REPO_URL: https://github.com/fat4-alt/immortalwrt-mt798x-rebase
-  REPO_BRANCH: 25.12
+  REPO_URL: https://github.com/fat4-alt/immortalwrt-mt798x-6.6
+  REPO_BRANCH: openwrt-24.10-6.6
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   FREE_SPACE: true
@@ -71,7 +71,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone -b $REPO_BRANCH --single-branch --filter=blob:none $REPO_URL openwrt 
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     # --------------------------------------------------------
@@ -139,5 +139,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success'
       with:
-        name: ImmortalWrt-24.10_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: ImmortalWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
