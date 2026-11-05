@@ -73,13 +73,13 @@ jobs:
         sudo chown $USER:$GROUPS /workdir
 
     # --------------------------------------------------------
-    # 步骤 4：克隆 OpenWrt 源码
+    # 步骤 4：克隆 OpenWrt 源码 git clone -b $REPO_BRANCH --single-branch --filter=blob:none $REPO_URL openwrt 
     # --------------------------------------------------------
     - name: Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone -b $REPO_BRANCH --single-branch --filter=blob:none $REPO_URL openwrt 
+        git clone $REPO_URL openwrt 
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     # --------------------------------------------------------
