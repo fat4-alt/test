@@ -97,6 +97,9 @@ jobs:
         ./scripts/feeds update qmodem
         ./scripts/feeds install -a -p qmodem
         ./scripts/feeds install -a -f -p qmodem
+        rm -rf ./package/feeds/helloworld/luci-app-ssr-plus
+        rm -rf ./package/feeds/luci/luci-app-filetransfer
+        rm -rf ./package/feeds/luci/luci-app-filebrowser
 
     # --------------------------------------------------------
     # 步骤 6：生成配置文件 (.config)
