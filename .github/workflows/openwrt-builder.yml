@@ -15,8 +15,8 @@ on:
 # 2. 全局环境变量 (Environment Variables) 
 # ============================================================
 env:
-  REPO_URL: https://github.com/fat4-alt/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
+  REPO_BRANCH: 21.02
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   FREE_SPACE: true
@@ -98,9 +98,6 @@ jobs:
         ./scripts/feeds update qmodem
         ./scripts/feeds install -a -p qmodem
         ./scripts/feeds install -a -f -p qmodem
-        rm -rf ./package/feeds/helloworld/luci-app-ssr-plus
-        rm -rf ./package/feeds/luci/luci-app-filetransfer
-        rm -rf ./package/feeds/luci/luci-app-filebrowser
 
     # --------------------------------------------------------
     # 步骤 6：生成配置文件 (.config)
